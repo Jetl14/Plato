@@ -2,7 +2,7 @@ name: Probar en emulador
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   probar:
     runs-on: ubuntu-24.04
@@ -28,8 +28,9 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back emulated
           script: bash tests/emulador.sh
-      - uses: actions/upload-artifact@v4
+      - name: Subir capturas a la rama pruebas
         if: always()
-        with:
-          name: capturas
-          path: capturas/
+        run: |
+          cd capturas && git init -q -b pruebas && git config user.name actions && git config user.email actions@github.com
+          git add -A && git commit -qm "Capturas del emulador ${{ github.run_number }}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" pruebas
