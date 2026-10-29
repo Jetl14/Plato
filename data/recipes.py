@@ -44,11 +44,9 @@ rec("caldo_costilla", "Caldo de costilla", 2, "d", "Cundinamarca",
     ["Cocina la costilla con agua, cebolla larga, ajo y sal 40 minutos (o 20 en olla a presión).",
      "Agrega las papas en trozos y cocina hasta que ablanden.",
      "Sirve con cilantro picado y una arepa o pan si quieres."], "", 50)
-rec("tamal", "Tamal tolimense", 1, "d", "Tolima",
-    [("harina_maiz_precocida", 70), ("pollo_desmechado", 50), ("cerdo_lomo", 50), ("tocino", 15), ("huevo", 25), ("arveja_verde", 20), ("zanahoria_cocida", 20), ("arroz_blanco_cocido", 40), ("papa_cocida", 40), ("manteca", 10), ("agua", 120), ("sal", 2)],
-    ["Arma la masa con la harina de maíz, caldo o agua, manteca y sal.",
-     "Pon sobre hojas de plátano la masa, el arroz, las carnes, el tocino, la papa, la zanahoria, las arvejas y el huevo.",
-     "Amarra y cocina 3 horas en agua hirviendo."], "", 200)
+rec("tamal", "Tamal tolimense con chocolate", 1, "d", "Tolima",
+    [("platos_tamal", 550), ("r:chocolate_leche", 240)],
+    ["Calienta el tamal en agua hirviendo 20 minutos dentro de sus hojas.", "Sirve con chocolate caliente y, si quieres, una arepa."], "", 25)
 rec("avena_banano", "Avena en hojuelas con leche y banano", 1, "d", "Genérica",
     [("avena_hojuelas", 40), ("leche_semi", 240), ("banano", 118)],
     ["Cocina la avena con la leche 4 minutos, revolviendo.",

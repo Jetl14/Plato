@@ -141,7 +141,7 @@ tocino|Tocino (barriga de cerdo)|carnes|518|9.3|0.0|53.0|0.0|0.0|32|tajada:15|US
 tocineta|Tocineta frita|carnes|541|37.0|1.4|42.0|0.0|0.0|1717|tajada:8|USDA|tocino tajado, bacon|
 salchicha|Salchicha|carnes|290|11.0|4.0|26.0|0.0|2.0|1000|unidad:45|USDA|salchicha perro|
 jamon|Jamón|carnes|120|18.0|2.0|4.0|0.0|1.0|1100|tajada:20|USDA|jamón de cerdo, jamón de pavo|
-lechona|Lechona|carnes|300|15.0|18.0|19.0|0.5|0.0|700|porción:250|aprox||
+lechona|Lechona tolimense|platos|224|21.8|7.3|12.0|2.9|0.5|452|porción:250|TCAC|lechona||
 tilapia|Tilapia / mojarra cocida|pescados|128|26.2|0.0|2.7|0.0|0.0|56|filete:120|USDA|mojarra, tilapia|tilapia_cruda:1.25
 mojarra_frita|Mojarra frita (parte comestible)|pescados|220|24.0|4.0|12.0|0.0|0.0|300|unidad (comestible):200|aprox|mojarra|tilapia_cruda:1.3
 tilapia_cruda|Pescado blanco crudo|pescados|96|20.1|0.0|1.7|0.0|0.0|52|libra:500|USDA|bagre, mojarra cruda|
@@ -218,5 +218,22 @@ salsa_tomate|Salsa de tomate (ketchup)|condimentos|101|1.0|27.4|0.1|0.3|21.3|907
 salsa_rosada|Salsa rosada|condimentos|400|1.0|10.0|40.0|0.0|8.0|700|cucharada:15|aprox||
 aji|Ají casero|condimentos|20|0.8|4.0|0.2|1.0|2.0|300|cucharada:15|aprox||
 caldo_pollo|Caldo de pollo (líquido)|condimentos|7|0.6|0.4|0.3|0.0|0.2|340|taza:240|USDA|consomé|
+platos_ajiaco|Ajiaco santafereño (solo sopa, ICBF)|platos|69|6.4|9.1|0.8|2.2|1.0|250|plato:450|TCAC|ajiaco||
+platos_bandeja|Bandeja paisa (ICBF)|platos|198|11.7|13.0|11.0|2.5|1.5|400|plato:800|TCAC|bandeja||
+platos_mazamorra_chiquita|Mazamorra chiquita (ICBF)|platos|105|9.8|5.1|5.0|3.0|0.5|250|plato:400|TCAC||
+platos_cuy|Cuy asado (ICBF)|platos|178|24.4|2.5|7.8|1.1|0|300|porción:250|TCAC|cuy||
+platos_mute|Mute santandereano (ICBF)|platos|101|8.1|3.5|6.1|1.9|0.5|300|plato:450|TCAC|mute||
+platos_tamal|Tamal tolimense (ICBF)|platos|108|5.7|12.7|3.8|4.0|0.5|300|unidad:550|media unidad:275|TCAC|tamal||
+platos_viudo|Viudo de bocachico (ICBF)|platos|117|13.2|6.7|4.1|1.1|0.5|250|plato:500|TCAC|viudo de pescado||
+platos_atollado|Arroz atollado (ICBF)|platos|109|10.1|7.5|4.3|1.7|0.5|300|plato:400|TCAC||
+platos_sancocho_gallina|Sancocho valluno de gallina (ICBF)|platos|113|16.4|2.9|4.0|1.3|0.5|250|plato:500|TCAC|sancocho||
+platos_friche|Friche de chivo (ICBF)|platos|238|29.7|0.8|12.9|0.8|0|400|porción:200|TCAC|friche||
+platos_mote_queso|Mote de queso (ICBF)|platos|89|5.4|8.0|3.9|2.2|0.5|300|plato:400|TCAC|mote||
+platos_rondon|Rondón (ICBF)|platos|126|8.2|18.5|2.1|1.7|1.0|300|plato:450|TCAC|rondon, rundown||
+platos_pisillo|Pisillo de chigüiro (ICBF)|platos|211|26.0|5.8|9.3|1.1|0.5|400|porción:150|TCAC|pisillo||
+platos_arroz_clavado|Arroz clavado (ICBF)|platos|179|6.4|25.9|5.5|0.5|0.5|300|plato:300|TCAC||
+platos_sancocho_bagre|Sancocho de bagre (ICBF)|platos|125|16.9|0.1|6.3|1.5|0.5|300|plato:500|TCAC|sancocho de pescado||
+platos_piangua|Sudao de piangua (ICBF)|platos|175|18.4|1.6|10.6|1.1|0.5|300|porción:250|TCAC|piangua||
+platos_pirarucu|Chicharrón de pirarucú (ICBF)|platos|212|22.0|7.9|10.3|0.8|0|300|porción:150|TCAC|pirarucu||
 comino|Comino / color (mezcla)|condimentos|300|15.0|40.0|18.0|10.0|2.0|150|cucharadita:2|aprox|color, achiote|
 """
