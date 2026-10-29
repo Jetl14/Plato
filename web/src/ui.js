@@ -212,7 +212,7 @@ window.delItem = (k, id) => {
 /* ===================== AGREGAR ===================== */
 let ADD = null;
 window.openAdd = (meal, mode = "buscar") => {
-  ADD = { meal: meal || guessMeal(), k: SEL, mode };
+  ADD = { meal: mealList().includes(meal) ? meal : guessMeal(), k: SEL, mode };
   const head = `<select class="in" id="addMeal" style="height:40px;width:auto;padding:0 8px">${mealList().map(m => `<option value="${m}" ${m === ADD.meal ? "selected" : ""}>${MEALS[m]}</option>`).join("")}</select>`;
   const o = sheet("Agregar", `<div class="chips" id="addTabs">
     ${[["buscar", "search", "Buscar"], ["foto", "cam", "Foto IA"], ["describir", "mic", "Describir"], ["codigo", "bar", "Código"], ["rapido", "bolt", "Rápido"]].map(([m, i, l]) => `<button class="chip" data-m="${m}">${ic(i, "s")}${l}</button>`).join("")}
