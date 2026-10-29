@@ -1,0 +1,11 @@
+<resources>
+    <color name="fondo">#F6F3EC</color>
+    <color name="superficie">#FFFFFF</color>
+    <color name="tinta">#1D2420</color>
+    <color name="gris">#6A706B</color>
+    <color name="verde">#2F7A57</color>
+    <color name="heroe">#1F3B2E</color>
+    <color name="heroe_tinta">#F3F7F4</color>
+    <color name="heroe_gris">#A9C2B5</color>
+    <color name="icono_fondo">#1F3B2E</color>
+</resources>

@@ -1,0 +1,46 @@
+name: Construir APK
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['data/icbf/**', '**.md', 'tests/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: apk
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: '17' }
+      - name: Armar la interfaz
+        run: |
+          python3 data/build_data.py > /dev/null
+          python3 web/build.py app/src/main/assets/index.html
+      - name: Compilar APK
+        run: |
+          yes | "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          chmod +x ./gradlew
+          set -o pipefail
+          ./gradlew assembleRelease --no-daemon --stacktrace 2>&1 | tee build.log || {
+            grep -A 12 "What went wrong" build.log | head -40 | while IFS= read -r l; do echo "::error::$l"; done
+            grep -E "error:|\.java:[0-9]+" build.log | head -30 | while IFS= read -r l; do echo "::error::$l"; done
+            exit 1; }
+          mkdir -p salida
+          cp app/build/outputs/apk/release/app-release.apk salida/Plato.apk
+          ls -la salida
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Plato-apk
+          path: salida/Plato.apk
+      - name: Publicar versión
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V=$(grep versionName app/build.gradle | head -1 | sed -E 's/.*"(.*)".*/\1/')
+          TAG="v${V}-${{ github.run_number }}"
+          gh release create "$TAG" salida/Plato.apk --title "Plato ${V} (compilación ${{ github.run_number }})" \
+            --notes "APK de Plato. Descárgalo desde el celular e instálalo (permite instalar apps de origen desconocido)." --latest

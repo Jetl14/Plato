@@ -5,3 +5,5 @@ node_modules/
 local.properties
 app/build/
 /tmp/
+web/dist/
+app/src/main/assets/index.html

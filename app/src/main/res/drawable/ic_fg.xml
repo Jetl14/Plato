@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- plato -->
+    <path android:fillColor="#F6F3EC" android:pathData="M54,26a28,28 0 1,0 0.01,0z"/>
+    <path android:fillColor="#1F3B2E" android:pathData="M54,33a21,21 0 1,0 0.01,0z"/>
+    <path android:fillColor="#F6F3EC" android:pathData="M54,36a18,18 0 1,0 0.01,0z"/>
+    <!-- arco de progreso -->
+    <path android:strokeColor="#7FD6A6" android:strokeWidth="4.5" android:strokeLineCap="round"
+        android:pathData="M54,30.5 A23.5,23.5 0 1,1 31.6,61.3"/>
+    <!-- hoja -->
+    <path android:fillColor="#2F7A57" android:pathData="M45,62C45,49 53,43 64,43C64,55 57,62 45,62Z"/>
+    <path android:strokeColor="#F6F3EC" android:strokeWidth="1.6" android:strokeLineCap="round" android:pathData="M48,59L60,47"/>
+</vector>
