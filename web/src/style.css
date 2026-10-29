@@ -76,7 +76,7 @@ nav.tabs .fab svg{width:28px;height:28px;stroke-width:2.2}
 .stats{display:grid;grid-template-columns:1fr;gap:6px;flex:1}
 .stat{display:flex;justify-content:space-between;font-size:14px}
 .macros{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-.mac .lbl{font-size:12px;display:flex;justify-content:space-between}
+.mac .lbl{font-size:12px;display:flex;flex-direction:column;gap:1px}.mac .lbl b{font-size:14px}
 .bar{height:6px;border-radius:9px;background:rgba(127,127,127,.22);overflow:hidden;margin-top:5px}
 .bar i{display:block;height:100%;border-radius:9px;background:var(--pri)}
 /* comidas */

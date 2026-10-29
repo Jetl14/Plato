@@ -152,8 +152,8 @@ camaron|Camarón cocido|pescados|99|24.0|0.2|0.3|0.0|0.0|111|taza:145|USDA|camar
 sardina|Sardinas en salsa de tomate|pescados|186|21.0|1.0|10.5|0.0|0.5|414|lata:155|USDA||
 pescado_frito|Pescado frito apanado|pescados|230|18.0|10.0|13.0|0.5|0.5|400|filete:130|aprox|bagre frito|
 huevo|Huevo cocido|huevos|155|12.6|1.1|10.6|0.0|1.1|124|unidad:50|USDA|huevo duro, huevo tibio, huevos|
-huevo_frito|Huevo frito|huevos|196|13.6|0.8|14.8|0.0|0.4|207|unidad:46|USDA|huevo estrellado|
-huevo_revuelto|Huevos revueltos|huevos|149|10.0|1.6|11.0|0.0|1.4|145|porción (2 huevos):110|USDA||
+huevo_frito|Huevo frito|huevos|196|13.6|0.8|14.8|0.0|0.4|207|unidad:46|USDA|huevo estrellado|huevo:1.05
+huevo_revuelto|Huevos revueltos|huevos|149|10.0|1.6|11.0|0.0|1.4|145|porción (2 huevos):110|USDA||huevo:0.9
 clara_huevo|Clara de huevo|huevos|52|10.9|0.7|0.2|0.0|0.7|166|unidad:33|USDA|claras|
 leche_entera|Leche entera|lacteos|61|3.2|4.8|3.3|0.0|5.1|43|vaso:240|taza:240|USDA|leche|
 leche_semi|Leche semidescremada|lacteos|50|3.3|4.8|2.0|0.0|5.0|47|vaso:240|USDA|leche deslactosada semidescremada|

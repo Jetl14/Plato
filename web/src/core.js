@@ -164,6 +164,15 @@ function bestMatch(name) {
   return null;
 }
 
+const STOP = new Set(["de", "con", "sin", "en", "el", "la", "los", "las", "y", "al", "del", "un", "una", "porcion", "plato"]);
+function matchQuality(name, ref) {
+  const i = refInfo(ref); if (!i) return 0;
+  const f = i.t === "f" ? foodById(i.id) : null;
+  const hay = norm(i.n + " " + (f && f.syn || ""));
+  const ws = norm(name).split(" ").filter(w => w.length > 2 && !STOP.has(w));
+  if (!ws.length) return 1;
+  return ws.filter(w => hay.includes(w) || (w.length > 4 && hay.includes(w.slice(0, -1)))).length / ws.length;
+}
 /* ===================== registrar ===================== */
 function portionsOf(ref) {
   const i = refInfo(ref); if (!i) return [["gramos", 1]];
@@ -317,18 +326,23 @@ function shoppingList(from, n) {
   }
   return groups;
 }
+function plural(lbl, n) {
+  const base = lbl.replace(/ \(.*\)/, "");
+  if (n <= 1) return base;
+  return base.split(" ").map(w => /^(de|con|sin|a|y)$/.test(w) ? w : /[aeiouáéó]$/.test(w) ? w + "s" : /[zs]$/.test(w) ? w : w + "es").join(" ");
+}
 function qtyTxt(f, g) {
   const por = f.por || [];
   const lb = por.find(p => p[0] === "libra");
-  const liquid = f.gr === "bebidas" || /leche|kumis|yogur/.test(f.id);
+  const liquid = f.gr === "bebidas" || /leche|kumis|yogur|caldo|jugo|^agua/.test(f.id);
   if (liquid && g >= 500) return `${r1(g / 1000)} litros`;
+  if (liquid) return `${fmt(g)} ml`;
   if (lb && g >= 250) return `${r1(Math.ceil(g / 250) / 2)} lb (${fmt(g)} g)`;
   const u = por.find(p => /^unidad|^tallo|^diente|^tajada|^mazorca|^bloque|^lata|^pastilla/.test(p[0]));
-  if (u && g / u[1] >= 0.8) return `${Math.ceil(g / u[1] - 0.15)} ${u[0].replace(/ \(.*\)/, "")}${Math.ceil(g / u[1] - 0.15) > 1 && !/s$/.test(u[0]) ? "s" : ""} · ${fmt(g)} g`;
+  if (u && g / u[1] >= 0.8) { const n = Math.ceil(g / u[1] - 0.15); return `${n} ${plural(u[0], n)} · ${fmt(g)} g`; }
   if (g >= 1000) return `${r1(g / 1000)} kg`;
   return `${fmt(g)} g`;
 }
-
 /* ===================== IA (Gemini) ===================== */
 const GBASE = "https://generativelanguage.googleapis.com/v1beta/";
 async function gemModels(key) {
@@ -407,16 +421,18 @@ async function aiAnalyze({ image, text }) {
   const j = parseJSON(res.text);
   if (!j || !Array.isArray(j.items)) throw new Error("No se pudo interpretar la respuesta de la IA");
   j.items = j.items.filter(x => x && x.nombre).map(x => {
-    let ref = x.ref && refInfo(String(x.ref)) ? String(x.ref) : null;
-    if (!ref) ref = bestMatch(x.nombre);
-    // si el match local es muy distinto en calorías a la estimación, preferir la estimación de la IA
     const g = clamp(+x.gramos || 100, 1, 3000);
+    const ia = { kcal: +x.kcal_estimadas || 0, p: +x.proteina || 0, c: +x.carbohidratos || 0, g: +x.grasa || 0 };
+    let ref = x.ref && refInfo(String(x.ref)) ? String(x.ref) : null, desdeIA = !!ref;
+    if (!ref) ref = bestMatch(x.nombre);
     let usarIA = !ref;
-    if (ref && x.kcal_estimadas) {
-      const k = nutOf(ref, g).kcal;
-      if (k > 0 && (k / x.kcal_estimadas > 3 || x.kcal_estimadas / k > 3)) { const r2 = bestMatch(x.nombre); ref = r2 || ref; }
+    if (ref) {
+      const q = matchQuality(x.nombre, ref), k = nutOf(ref, g).kcal, ratio = ia.kcal && k ? Math.max(k / ia.kcal, ia.kcal / k) : 1;
+      // si la coincidencia local es parcial y las calorías no cuadran, usar la estimación de la IA
+      if (!desdeIA && (q < 0.75 || (q < 1 && ratio > 1.5))) usarIA = !!ia.kcal;
+      if (desdeIA && ratio > 3) usarIA = !!ia.kcal;
     }
-    return { nombre: x.nombre, ref, g, conf: +x.confianza || 0.5, ia: { kcal: +x.kcal_estimadas || 0, p: +x.proteina || 0, c: +x.carbohidratos || 0, g: +x.grasa || 0 }, usarIA };
+    return { nombre: x.nombre, ref, g, conf: +x.confianza || 0.5, ia, usarIA };
   });
   j.model = res.model;
   return j;

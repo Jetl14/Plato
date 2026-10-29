@@ -264,3 +264,13 @@ rec("jugo_maracuya", "Jugo de maracuyá en agua", 1, "am", "Nacional",
     [("maracuya", 60), ("agua", 220), ("azucar", 20)], ["Licúa la pulpa con agua y azúcar; cuela."], "bebida", 5)
 rec("avena_casera", "Avena casera (bebida)", 2, "dm", "Nacional",
     [("avena_hojuelas", 40), ("leche_entera", 400), ("azucar", 20)], ["Cocina la avena con la leche, la canela y el azúcar; licúa y sirve fría."], "bebida", 15)
+rec("jugo_mora_agua", "Jugo de mora en agua", 1, "am", "Nacional",
+    [("mora", 100), ("agua", 200), ("azucar", 20)], ["Licúa la mora con agua y azúcar; cuela."], "bebida", 5)
+rec("jugo_guayaba_agua", "Jugo de guayaba en agua", 1, "am", "Nacional",
+    [("guayaba", 120), ("agua", 200), ("azucar", 20)], ["Licúa la guayaba con agua y azúcar; cuela."], "bebida", 5)
+rec("jugo_tomate_arbol", "Jugo de tomate de árbol en agua", 1, "am", "Nacional",
+    [("tomate_arbol", 120), ("agua", 200), ("azucar", 20)], ["Escalda los tomates, pélalos y licúa con agua y azúcar; cuela."], "bebida", 5)
+rec("limonada", "Limonada natural", 1, "am", "Nacional",
+    [("limon", 40), ("agua", 250), ("azucar", 20)], ["Mezcla el jugo de limón con agua fría y azúcar."], "bebida", 5)
+rec("jugo_mango_leche", "Jugo de mango en leche", 1, "am", "Nacional",
+    [("mango", 120), ("leche_entera", 200), ("azucar", 15)], ["Licúa el mango con la leche y el azúcar."], "bebida", 5)
