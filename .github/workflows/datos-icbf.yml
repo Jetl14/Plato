@@ -1,0 +1,29 @@
+name: Descargar tabla ICBF
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/datos-icbf.yml']
+permissions:
+  contents: write
+jobs:
+  datos:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Descargar PDF de la TCAC y 18 preparaciones
+        run: |
+          sudo apt-get install -y -q poppler-utils > /dev/null
+          mkdir -p data/icbf && cd data/icbf
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
+          get() { curl -fsSL -A "$UA" --retry 3 -o "$1" "$2" && echo "OK $1 $(stat -c%s "$1")" || echo "::warning::fallo $2"; }
+          get tcac_2018.pdf https://www.icbf.gov.co/system/files/tcac_web.pdf
+          [ -s tcac_2018.pdf ] || get tcac_2018.pdf https://www.icbf.gov.co/sites/default/files/tcac_web.pdf
+          get preparaciones_18.pdf https://www.icbf.gov.co/system/files/caracterizacion-composicion-18-preparaciones-tradicionales-icbf1_0.pdf
+          get tcac_2015.pdf https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/INEC/IETS/tabla-de-composicion-alimentos-colombianos-2015.pdf
+          for f in *.pdf; do file "$f"; pdftotext -layout "$f" "${f%.pdf}.txt" || true; done
+          ls -la
+      - name: Guardar
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add data/icbf; git commit -m "Datos ICBF descargados" || echo "sin cambios"
+          git push

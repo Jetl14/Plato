@@ -1,0 +1,7 @@
+node_modules/
+*.apk
+/build/
+.gradle/
+local.properties
+app/build/
+/tmp/
