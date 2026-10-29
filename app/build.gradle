@@ -27,6 +27,7 @@ android {
         release {
             minifyEnabled false
             signingConfig signingConfigs.plato
+            ndk { abiFilters 'armeabi-v7a', 'arm64-v8a' }
         }
         debug {
             signingConfig signingConfigs.plato
